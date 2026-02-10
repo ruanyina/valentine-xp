@@ -62,12 +62,17 @@ body {
 }
 
 .desktop-icon:hover img {
-  filter: drop-shadow(0 0 10px var(--glow));
+  filter:
+    drop-shadow(0 0 12px rgba(120,185,255,1))
+    drop-shadow(0 0 24px rgba(120,185,255,0.8));
+  transform: scale(1.05);
 }
 
 .desktop-icon:hover span {
-  background: rgba(10,36,106,0.65);
+  background: rgba(10,36,106,0.8);
+  box-shadow: 0 0 14px rgba(120,185,255,0.9);
 }
+
 
 .music-icon {
   position: absolute;
