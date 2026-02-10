@@ -1,0 +1,115 @@
+:root {
+  --xp-blue: #0a246a;
+  --xp-blue-light: #3a6ea5;
+  --xp-border: #b4b4b4;
+  --xp-face: #ece9d8;
+  --glow: rgba(120, 185, 255, 0.9);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: Tahoma, Verdana, Arial, sans-serif;
+  cursor: url("Cursor.ico") 0 0, auto;
+}
+
+.desktop {
+  width: 100%;
+  height: 100%;
+  background: url("Background.jpg") center / cover no-repeat;
+  position: relative;
+  overflow: hidden;
+}
+
+.icon-column {
+  position: absolute;
+  top: 24px;
+  left: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.desktop-icon {
+  width: 90px;
+  background: transparent;
+  border: none;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  cursor: inherit;
+}
+
+.desktop-icon img {
+  width: 44px;
+  height: 44px;
+}
+
+.desktop-icon span {
+  font-size: 14px;
+  padding: 2px 6px;
+  border-radius: 3px;
+}
+
+.desktop-icon:hover img {
+  filter: drop-shadow(0 0 10px var(--glow));
+}
+
+.desktop-icon:hover span {
+  background: rgba(10,36,106,0.65);
+}
+
+.music-icon {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.window-layer {
+  position: absolute;
+  inset: 0;
+}
+
+.xp-window {
+  position: absolute;
+  width: 520px;
+  height: 360px;
+  background: var(--xp-face);
+  border: 1px solid var(--xp-border);
+  border-radius: 6px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  overflow: hidden;
+}
+
+.xp-titlebar {
+  height: 34px;
+  background: linear-gradient(180deg, var(--xp-blue-light), var(--xp-blue));
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 8px;
+  cursor: move;
+}
+
+.xp-titlebar button {
+  background: rgba(255,255,255,0.25);
+  border: 1px solid white;
+  color: white;
+}
+
+.xp-content {
+  padding: 12px;
+  height: calc(100% - 34px);
+  overflow: auto;
+}
