@@ -254,3 +254,68 @@ body {
   color: #111;
 }
 
+.favs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fav-group {
+  border: 1px solid #cfcfcf;
+  background: white;
+}
+
+.fav-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  background: #f7f7f7;
+  border: 0;
+  cursor: pointer;
+  font-family: Tahoma, sans-serif;
+  font-size: 13px;
+  text-align: left;
+}
+
+.fav-heart {
+  color: #ff6fb1;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.fav-panel {
+  display: none;
+  padding: 10px 14px 14px 34px;
+  border-top: 1px solid #e5e5e5;
+}
+
+.fav-group.open .fav-panel {
+  display: block;
+}
+
+.fav-item {
+  margin: 6px 0;
+}
+
+/* Album grid */
+.album-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 120px);
+  gap: 14px;
+}
+
+.album-cover {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border: 1px solid #b9b9b9;
+  background: white;
+  transition: transform 0.15s ease;
+}
+
+.album-cover:hover {
+  transform: scale(1.05);
+}
+
