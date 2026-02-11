@@ -284,3 +284,12 @@ body {
   border: 1px solid #b9b9b9;
   background: white;
 }
+
+#folderWindow,
+#folderWindow * {
+  color: #111;
+}
+
+#photoList {
+  color: #111;
+}
