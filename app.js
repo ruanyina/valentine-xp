@@ -211,12 +211,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // ----------------------------
   document.querySelectorAll(".desktop-icon").forEach((icon) => {
     icon.addEventListener("click", () => {
-      const app = icon.dataset.app;
+      const app = icon.getAttribute("data-app");
 
-      if (app === "files") {
-        openFolder();
-        return;
-      }
+if (app === "files") {
+  openFolder();
+  return;
+}
 
       openWindow(app);
     });
