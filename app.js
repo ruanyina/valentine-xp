@@ -90,3 +90,99 @@ btn.addEventListener("click", () => {
     btn.textContent = "♫";
   }
 });
+
+// app.js
+// Paste this (or replace your folder/photo code with this)
+
+const photoFiles = [
+  "First Date.jpg",
+  "Second Date.jpg",
+  "Third Date.jpg",
+  "Freak Out.jpg",
+  "Huge Ass.jpg",
+  "Our Chairs.jpg",
+  "Roof.jpg",
+  "Double Cow.jpg",
+  "Cucumber.jpg",
+  "Empty Park.jpg",
+  "Bruger.jpg",
+  "Best Day Ever.jpg",
+  "Go Dodgers.jpg",
+  "Us.jpg",
+  "You Didnt Want to Play.jpg",
+  "Pier.jpg",
+  "Photography.jpg",
+  "The Miata.jpg"
+];
+
+const folderWindow = document.getElementById("folderWindow");
+const viewerWindow = document.getElementById("viewerWindow");
+const photoList = document.getElementById("photoList");
+
+const closeFolderBtn = document.getElementById("closeFolderBtn");
+const closeViewerBtn = document.getElementById("closeViewerBtn");
+
+const viewerImg = document.getElementById("viewerImg");
+const viewerTitle = document.getElementById("viewerTitle");
+
+const fileBtn = document.getElementById("fileBtn");
+
+function getDisplayName(file) {
+  return file.replace(/\.jpg$/i, "");
+}
+
+function openFolder() {
+  photoList.innerHTML = "";
+
+  photoFiles.forEach((file) => {
+    const row = document.createElement("div");
+    row.className = "xp-file";
+
+    const icon = document.createElement("div");
+    icon.className = "xp-file-icon";
+
+    const label = document.createElement("div");
+    label.className = "xp-file-name";
+    label.textContent = getDisplayName(file);
+
+    row.appendChild(icon);
+    row.appendChild(label);
+
+    row.addEventListener("click", () => openViewer(file));
+
+    photoList.appendChild(row);
+  });
+
+  folderWindow.classList.remove("hidden");
+}
+
+function closeFolder() {
+  folderWindow.classList.add("hidden");
+}
+
+function openViewer(file) {
+  viewerTitle.textContent = getDisplayName(file);
+  viewerImg.src = file;
+  viewerImg.alt = getDisplayName(file);
+
+  viewerWindow.classList.remove("hidden");
+}
+
+function closeViewer() {
+  viewerWindow.classList.add("hidden");
+  viewerImg.src = "";
+}
+
+if (fileBtn) {
+  fileBtn.addEventListener("click", openFolder);
+}
+
+closeFolderBtn.addEventListener("click", closeFolder);
+closeViewerBtn.addEventListener("click", closeViewer);
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") {
+    if (!viewerWindow.classList.contains("hidden")) closeViewer();
+    else if (!folderWindow.classList.contains("hidden")) closeFolder();
+  }
+});
