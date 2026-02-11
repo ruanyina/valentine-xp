@@ -23,7 +23,6 @@ body {
   cursor: url("cursor.png") 0 0, auto;
 }
 
-
 .desktop {
   width: 100%;
   height: 100%;
@@ -88,7 +87,7 @@ body {
   box-shadow: 0 0 16px rgba(120, 185, 255, 0.95);
 }
 
-/* Music icon top right */
+/* Optional music icon top right if you use it */
 .music-icon {
   position: absolute;
   top: 24px;
@@ -96,7 +95,7 @@ body {
   z-index: 2;
 }
 
-/* Window layer must NOT block hover or clicks on icons */
+/* Your existing window layer (does not block icon clicks) */
 .window-layer {
   position: absolute;
   inset: 0;
@@ -104,45 +103,7 @@ body {
   pointer-events: none;
 }
 
-/* Windows themselves can be interacted with */
-.xp-window {
-  position: absolute;
-  width: 520px;
-  height: 360px;
-  background: var(--xp-face);
-  border: 1px solid var(--xp-border);
-  border-radius: 6px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-  overflow: hidden;
-  pointer-events: auto;
-}
-
-.xp-titlebar {
-  height: 34px;
-  background: linear-gradient(180deg, var(--xp-blue-light), var(--xp-blue));
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0 8px;
-  cursor: move;
-}
-
-.xp-titlebar button {
-  background: rgba(255, 255, 255, 0.25);
-  border: 1px solid rgba(255, 255, 255, 0.8);
-  border-radius: 3px;
-  color: white;
-  width: 26px;
-  height: 20px;
-}
-
-.xp-content {
-  padding: 12px;
-  height: calc(100% - 34px);
-  overflow: auto;
-}
-
+/* Footer taskbar */
 .xp-footer {
   position: fixed;
   bottom: 0;
@@ -158,6 +119,7 @@ body {
   font-family: Tahoma, sans-serif;
   color: white;
   overflow: hidden;
+  z-index: 9998;
 }
 
 .scrolling-text {
@@ -180,8 +142,7 @@ body {
   z-index: 2;
 }
 
-/* styles.css */
-/* Add this at the bottom */
+/* ---------- Folder window + viewer window ---------- */
 
 .hidden {
   display: none;
@@ -198,6 +159,7 @@ body {
   border: 2px solid #0a246a;
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   z-index: 9999;
+  overflow: hidden;
 }
 
 .xp-titlebar {
@@ -237,7 +199,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  max-height: 360px;
+  max-height: 280px;
   overflow: auto;
   padding: 6px;
   background: white;
@@ -268,6 +230,7 @@ body {
 
 .xp-file-name {
   font-size: 13px;
+  color: #111;
 }
 
 .xp-viewer {
@@ -285,11 +248,9 @@ body {
   background: white;
 }
 
+/* Force folder text to stay dark even if other parts use white text */
 #folderWindow,
 #folderWindow * {
   color: #111;
 }
 
-#photoList {
-  color: #111;
-}
