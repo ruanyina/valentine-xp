@@ -23,6 +23,8 @@ body {
   cursor: url("cursor.png") 0 0, auto;
 }
 
+/* ---------------- Desktop ---------------- */
+
 .desktop {
   width: 100%;
   height: 100%;
@@ -66,7 +68,6 @@ body {
   font-size: 13px;
   padding: 1px 6px;
   border-radius: 2px;
-  letter-spacing: 0;
 }
 
 .desktop-icon img,
@@ -87,15 +88,7 @@ body {
   box-shadow: 0 0 16px rgba(120, 185, 255, 0.95);
 }
 
-/* Optional music icon top right if you use it */
-.music-icon {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  z-index: 2;
-}
-
-/* Your existing window layer (does not block icon clicks) */
+/* Window layer */
 .window-layer {
   position: absolute;
   inset: 0;
@@ -103,7 +96,109 @@ body {
   pointer-events: none;
 }
 
-/* Footer taskbar */
+/* ---------------- XP Windows ---------------- */
+
+.hidden {
+  display: none;
+}
+
+.xp-window {
+  position: fixed;
+  width: 520px;
+  background: #f3f3f3;
+  border: 2px solid #0a246a;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  z-index: 9999;
+  overflow: hidden;
+}
+
+.xp-titlebar {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  background: linear-gradient(to bottom, #3a6edb, #0a246a);
+  color: #fff;
+  font-family: Tahoma, sans-serif;
+  user-select: none;
+  cursor: move;
+}
+
+.xp-titlebar button {
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 3px;
+  color: white;
+  width: 26px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.xp-content {
+  padding: 12px;
+  max-height: 420px;
+  overflow: auto;
+}
+
+/* ---------------- Folder list ---------------- */
+
+.xp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 320px;
+  overflow: auto;
+  padding: 6px;
+  background: white;
+  border: 1px solid #b9b9b9;
+}
+
+.xp-file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.xp-file:hover {
+  border: 1px solid #3a6edb;
+  background: rgba(58, 110, 219, 0.12);
+}
+
+.xp-file-icon {
+  width: 18px;
+  height: 18px;
+  border: 1px solid #777;
+  background: #f7e9a0;
+}
+
+.xp-file-name {
+  font-size: 13px;
+  color: #111;
+}
+
+/* ---------------- Image viewer ---------------- */
+
+.xp-viewer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.xp-viewer img {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  border: 1px solid #b9b9b9;
+  background: white;
+}
+
+/* ---------------- Footer ---------------- */
+
 .xp-footer {
   position: fixed;
   bottom: 0;
@@ -115,7 +210,6 @@ body {
   align-items: center;
   justify-content: flex-end;
   padding: 0 10px;
-  box-sizing: border-box;
   font-family: Tahoma, sans-serif;
   color: white;
   overflow: hidden;
@@ -142,117 +236,7 @@ body {
   z-index: 2;
 }
 
-/* ---------- Folder window + viewer window ---------- */
-
-.hidden {
-  display: none;
-}
-
-.xp-window {
-  position: fixed;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 520px;
-  max-width: calc(100vw - 40px);
-  background: #f3f3f3;
-  border: 2px solid #0a246a;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
-  z-index: 9999;
-  overflow: hidden;
-}
-
-.xp-titlebar {
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 8px;
-  background: linear-gradient(to bottom, #3a6edb, #0a246a);
-  color: #fff;
-  font-family: Tahoma, sans-serif;
-  user-select: none;
-}
-
-.xp-title {
-  font-size: 13px;
-}
-
-.xp-close {
-  width: 26px;
-  height: 22px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  background: rgba(255, 255, 255, 0.15);
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  line-height: 18px;
-}
-
-.xp-window-body {
-  padding: 10px;
-  font-family: Tahoma, sans-serif;
-  color: #111;
-}
-
-.xp-list {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  max-height: 280px;
-  overflow: auto;
-  padding: 6px;
-  background: white;
-  border: 1px solid #b9b9b9;
-}
-
-.xp-file {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 8px;
-  cursor: pointer;
-  border: 1px solid transparent;
-}
-
-.xp-file:hover {
-  border: 1px solid #3a6edb;
-  background: rgba(58, 110, 219, 0.12);
-}
-
-.xp-file-icon {
-  width: 18px;
-  height: 18px;
-  flex: 0 0 18px;
-  border: 1px solid #777;
-  background: #f7e9a0;
-}
-
-.xp-file-name {
-  font-size: 13px;
-  color: #111;
-}
-
-.xp-viewer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.xp-viewer img {
-  width: 100%;
-  height: auto;
-  max-height: 70vh;
-  object-fit: contain;
-  border: 1px solid #b9b9b9;
-  background: white;
-}
-
-/* Force folder text to stay dark even if other parts use white text */
-#folderWindow,
-#folderWindow * {
-  color: #111;
-}
+/* ---------------- Favorites expandable sections ---------------- */
 
 .favs {
   display: flex;
@@ -282,7 +266,6 @@ body {
 .fav-heart {
   color: #ff6fb1;
   font-size: 14px;
-  line-height: 1;
 }
 
 .fav-panel {
@@ -299,7 +282,8 @@ body {
   margin: 6px 0;
 }
 
-/* Album grid */
+/* Album covers grid */
+
 .album-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, 120px);
@@ -318,4 +302,3 @@ body {
 .album-cover:hover {
   transform: scale(1.05);
 }
-
