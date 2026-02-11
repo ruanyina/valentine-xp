@@ -308,3 +308,148 @@ body {
   top: 50%;
   transform: translate(-50%, -50%);
 }
+.question-wrap {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 220px;
+}
+
+.question-text {
+  font-size: 18px;
+  padding: 18px 6px 8px 6px;
+}
+
+.question-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 6px 6px 6px;
+}
+
+.xp-btn {
+  flex: 1;
+  height: 40px;
+  background: #efefef;
+  border: 2px solid #8c8c8c;
+  box-shadow: inset 1px 1px 0 #ffffff, inset -1px -1px 0 #bdbdbd;
+  font-family: Tahoma, sans-serif;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.xp-btn:active {
+  box-shadow: inset -1px -1px 0 #ffffff, inset 1px 1px 0 #bdbdbd;
+}
+
+.xp-btn-yes {
+  border-color: #7a7a7a;
+}
+
+.xp-btn-no {
+  border-color: #7a7a7a;
+}
+
+.fx-layer {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 20000;
+}
+
+.heart {
+  position: absolute;
+  font-size: 22px;
+  color: #ff6fb1;
+  will-change: transform, opacity;
+  animation: heartPop 900ms ease-out forwards;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes heartPop {
+  0% {
+    transform: translate(0, 0) scale(0.6);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) scale(1.3);
+    opacity: 0;
+  }
+}
+
+.ticket-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 21000;
+  pointer-events: auto;
+}
+
+.ticket-img {
+  width: min(860px, 92vw);
+  max-height: 86vh;
+  object-fit: contain;
+  border: 2px solid #0a246a;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  filter: blur(16px);
+  opacity: 0;
+  transform: scale(0.96);
+  animation: ticketIn 700ms ease-out forwards;
+  background: white;
+}
+
+@keyframes ticketIn {
+  to {
+    filter: blur(0);
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.explosion {
+  position: fixed;
+  inset: 0;
+  z-index: 22000;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 55%, rgba(255, 230, 160, 1) 0%, rgba(255, 120, 120, 1) 18%, rgba(60, 0, 0, 1) 55%, rgba(0, 0, 0, 1) 100%);
+  opacity: 0;
+  animation: boom 650ms ease-out forwards;
+}
+
+@keyframes boom {
+  0% {
+    transform: scale(0.6);
+    opacity: 0;
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.25);
+    opacity: 0;
+  }
+}
+
+.shake {
+  animation: shakeScreen 450ms linear;
+}
+
+@keyframes shakeScreen {
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-8px, 6px); }
+  20% { transform: translate(10px, -6px); }
+  30% { transform: translate(-10px, -4px); }
+  40% { transform: translate(8px, 10px); }
+  50% { transform: translate(-6px, -10px); }
+  60% { transform: translate(10px, 4px); }
+  70% { transform: translate(-10px, 6px); }
+  80% { transform: translate(8px, -6px); }
+  90% { transform: translate(-6px, 4px); }
+  100% { transform: translate(0, 0); }
+}
