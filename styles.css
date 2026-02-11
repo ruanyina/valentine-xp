@@ -18,9 +18,11 @@ body {
 }
 
 body {
-  font-family: Tahoma, Verdana, Arial, sans-serif;
-  cursor: url("Cursor.png") 0 0, auto;
+  font-family: Tahoma, "MS Sans Serif", Verdana, Arial, sans-serif;
+  font-size: 13px;
+  cursor: url("Cursor.ico") 0 0, auto;
 }
+
 
 .desktop {
   width: 100%;
