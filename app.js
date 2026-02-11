@@ -228,16 +228,26 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 9000);
   }
 
-  function bigExplosion() {
-    const boom = document.createElement("div");
-    boom.className = "explosion";
-    document.body.appendChild(boom);
-
-    document.body.classList.add("shake");
-    setTimeout(() => document.body.classList.remove("shake"), 500);
-
-    setTimeout(() => boom.remove(), 750);
+ function bigExplosion() {
+  const boomAudio = document.getElementById("boomSound");
+  if (boomAudio) {
+    boomAudio.currentTime = 0;
+    boomAudio.volume = 0.8;
+    boomAudio.play();
   }
+
+  const boom = document.createElement("div");
+  boom.className = "explosion";
+  document.body.appendChild(boom);
+
+  document.body.classList.add("shake");
+
+  setTimeout(() => {
+    document.body.classList.remove("shake");
+    boom.remove();
+  }, 1700);
+}
+
 
   function wireQuestionInteractions(root) {
     const yes = root.querySelector("#yesBtn");
