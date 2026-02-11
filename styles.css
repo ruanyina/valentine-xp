@@ -3,14 +3,15 @@
   --xp-blue-light: #3a6ea5;
   --xp-border: #b4b4b4;
   --xp-face: #ece9d8;
-  --glow: rgba(120, 185, 255, 0.9);
+  --glow-strong: rgba(120, 185, 255, 1);
 }
 
 * {
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
   margin: 0;
@@ -29,6 +30,7 @@ body {
   overflow: hidden;
 }
 
+/* Desktop icons */
 .icon-column {
   position: absolute;
   top: 24px;
@@ -36,23 +38,27 @@ body {
   display: flex;
   flex-direction: column;
   gap: 18px;
+  z-index: 2;
 }
 
 .desktop-icon {
-  width: 90px;
+  width: 92px;
+  padding: 8px 6px;
   background: transparent;
   border: none;
   display: grid;
   justify-items: center;
   gap: 6px;
   color: white;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.6);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
   cursor: inherit;
+  user-select: none;
 }
 
 .desktop-icon img {
   width: 44px;
   height: 44px;
+  filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.35));
 }
 
 .desktop-icon span {
@@ -61,30 +67,41 @@ body {
   border-radius: 3px;
 }
 
+.desktop-icon img,
+.desktop-icon span {
+  transition: all 0.15s ease-out;
+}
+
 .desktop-icon:hover img {
   filter:
-    drop-shadow(0 0 12px rgba(120,185,255,1))
-    drop-shadow(0 0 24px rgba(120,185,255,0.8));
-  transform: scale(1.05);
+    drop-shadow(0 0 14px var(--glow-strong))
+    drop-shadow(0 0 30px rgba(120, 185, 255, 0.85))
+    drop-shadow(0 2px 2px rgba(0, 0, 0, 0.35));
+  transform: scale(1.08);
 }
 
 .desktop-icon:hover span {
-  background: rgba(10,36,106,0.8);
-  box-shadow: 0 0 14px rgba(120,185,255,0.9);
+  background: rgba(10, 36, 106, 0.85);
+  box-shadow: 0 0 16px rgba(120, 185, 255, 0.95);
 }
 
-
+/* Music icon top right */
 .music-icon {
   position: absolute;
   top: 24px;
   right: 24px;
+  z-index: 2;
 }
 
+/* Window layer must NOT block hover or clicks on icons */
 .window-layer {
   position: absolute;
   inset: 0;
+  z-index: 5;
+  pointer-events: none;
 }
 
+/* Windows themselves can be interacted with */
 .xp-window {
   position: absolute;
   width: 520px;
@@ -92,8 +109,9 @@ body {
   background: var(--xp-face);
   border: 1px solid var(--xp-border);
   border-radius: 6px;
-  box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
   overflow: hidden;
+  pointer-events: auto;
 }
 
 .xp-titlebar {
@@ -108,9 +126,12 @@ body {
 }
 
 .xp-titlebar button {
-  background: rgba(255,255,255,0.25);
-  border: 1px solid white;
+  background: rgba(255, 255, 255, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  border-radius: 3px;
   color: white;
+  width: 26px;
+  height: 20px;
 }
 
 .xp-content {
