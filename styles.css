@@ -179,3 +179,108 @@ body {
   padding: 2px 8px;
   z-index: 2;
 }
+
+/* styles.css */
+/* Add this at the bottom */
+
+.hidden {
+  display: none;
+}
+
+.xp-window {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 520px;
+  max-width: calc(100vw - 40px);
+  background: #f3f3f3;
+  border: 2px solid #0a246a;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+  z-index: 9999;
+}
+
+.xp-titlebar {
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 8px;
+  background: linear-gradient(to bottom, #3a6edb, #0a246a);
+  color: #fff;
+  font-family: Tahoma, sans-serif;
+  user-select: none;
+}
+
+.xp-title {
+  font-size: 13px;
+}
+
+.xp-close {
+  width: 26px;
+  height: 22px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 18px;
+}
+
+.xp-window-body {
+  padding: 10px;
+  font-family: Tahoma, sans-serif;
+  color: #111;
+}
+
+.xp-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-height: 360px;
+  overflow: auto;
+  padding: 6px;
+  background: white;
+  border: 1px solid #b9b9b9;
+}
+
+.xp-file {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px;
+  cursor: pointer;
+  border: 1px solid transparent;
+}
+
+.xp-file:hover {
+  border: 1px solid #3a6edb;
+  background: rgba(58, 110, 219, 0.12);
+}
+
+.xp-file-icon {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 18px;
+  border: 1px solid #777;
+  background: #f7e9a0;
+}
+
+.xp-file-name {
+  font-size: 13px;
+}
+
+.xp-viewer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.xp-viewer img {
+  width: 100%;
+  height: auto;
+  max-height: 70vh;
+  object-fit: contain;
+  border: 1px solid #b9b9b9;
+  background: white;
+}
