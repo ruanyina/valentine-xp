@@ -302,3 +302,9 @@ body {
 .album-cover:hover {
   transform: scale(1.05);
 }
+#folderWindow,
+#viewerWindow {
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
