@@ -422,7 +422,7 @@ body {
   pointer-events: none;
   background: url("Explosion.jpg") center / cover no-repeat;
   opacity: 0;
-  animation: boom 650ms ease-out forwards;
+  animation: boom 1500ms ease-out forwards;
 }
 
 
