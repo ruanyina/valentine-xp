@@ -420,11 +420,11 @@ body {
   inset: 0;
   z-index: 22000;
   pointer-events: none;
-  background:
-    radial-gradient(circle at 50% 55%, rgba(255, 230, 160, 1) 0%, rgba(255, 120, 120, 1) 18%, rgba(60, 0, 0, 1) 55%, rgba(0, 0, 0, 1) 100%);
+  background: url("Explosion.jpg") center / cover no-repeat;
   opacity: 0;
   animation: boom 650ms ease-out forwards;
 }
+
 
 @keyframes boom {
   0% {
