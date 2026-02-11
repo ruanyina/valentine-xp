@@ -254,7 +254,8 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     win.append(bar, content);
-    layer.appendChild(win);
+   document.body.appendChild(win);
+
 
     drag(win, bar);
   }
