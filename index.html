@@ -32,6 +32,31 @@
   </main>
 
   <script src="app.js?v=2"></script>
+
+  <!-- Folder Window -->
+<div id="folderWindow" class="xp-window hidden">
+  <div class="xp-titlebar">
+    <div class="xp-title">My Memories</div>
+    <button class="xp-close" id="closeFolderBtn">×</button>
+  </div>
+
+  <div class="xp-window-body">
+    <div class="xp-list" id="photoList"></div>
+  </div>
+</div>
+
+<!-- Image Viewer -->
+<div id="viewerWindow" class="xp-window hidden">
+  <div class="xp-titlebar">
+    <div class="xp-title" id="viewerTitle">Photo</div>
+    <button class="xp-close" id="closeViewerBtn">×</button>
+  </div>
+
+  <div class="xp-window-body xp-viewer">
+    <img id="viewerImg" />
+  </div>
+</div>
+
 </body>
 </html>
 
