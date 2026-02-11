@@ -1,3 +1,4 @@
+alert("js loaded");
 const layer = document.getElementById("windowLayer");
 
 const titles = {
