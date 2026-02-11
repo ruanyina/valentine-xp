@@ -5,13 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>XP Valentine</title>
   <link rel="stylesheet" href="styles.css?v=99" />
-
 </head>
+
 <body>
   <main class="desktop">
-
     <section class="icon-column">
-      <button class="desktop-icon" data-app="files">
+      <button class="desktop-icon" data-app="files" id="fileBtn">
         <img src="Folder Icon.ico" />
         <span>Files</span>
       </button>
@@ -28,44 +27,47 @@
     </section>
 
     <div class="window-layer" id="windowLayer"></div>
-
   </main>
 
-  <script src="app.js?v=2"></script>
-
   <!-- Folder Window -->
-<div id="folderWindow" class="xp-window hidden">
-  <div class="xp-titlebar">
-    <div class="xp-title">My Memories</div>
-    <button class="xp-close" id="closeFolderBtn">×</button>
+  <div id="folderWindow" class="xp-window hidden">
+    <div class="xp-titlebar">
+      <div class="xp-title">My Memories</div>
+      <button class="xp-close" id="closeFolderBtn">×</button>
+    </div>
+
+    <div class="xp-window-body">
+      <div class="xp-list" id="photoList"></div>
+    </div>
   </div>
 
-  <div class="xp-window-body">
-    <div class="xp-list" id="photoList"></div>
-  </div>
-</div>
+  <!-- Image Viewer -->
+  <div id="viewerWindow" class="xp-window hidden">
+    <div class="xp-titlebar">
+      <div class="xp-title" id="viewerTitle">Photo</div>
+      <button class="xp-close" id="closeViewerBtn">×</button>
+    </div>
 
-<!-- Image Viewer -->
-<div id="viewerWindow" class="xp-window hidden">
-  <div class="xp-titlebar">
-    <div class="xp-title" id="viewerTitle">Photo</div>
-    <button class="xp-close" id="closeViewerBtn">×</button>
+    <div class="xp-window-body xp-viewer">
+      <img id="viewerImg" alt="">
+    </div>
   </div>
 
-  <div class="xp-window-body xp-viewer">
-    <img id="viewerImg" />
+  <!-- Footer -->
+  <div class="xp-footer">
+    <div class="scrolling-text">
+      ♡ hello, this is for MacAndrew, if you are him, welcome to our web ♡
+    </div>
+    <button id="musicBtn">♫</button>
   </div>
-</div>
 
+  <audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+  </audio>
+
+  <script src="app.js?v=2"></script>
 </body>
 </html>
-
-<div class="xp-footer">
-  <div class="scrolling-text">
-    ♡ hello, this is for MacAndrew, if you are him, welcome to our web ♡
-  </div>
-  <button id="musicBtn">♫</button>
-</div>
 
 <audio id="bgMusic" loop>
   <source src="music.mp3" type="audio/mpeg">
