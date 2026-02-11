@@ -197,7 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let i = 0; i < count; i++) {
       const h = document.createElement("div");
       h.className = "heart";
-      h.textContent = "♡";
+      h.textContent = "♥";
 
       const startX = window.innerWidth / 2 + (Math.random() * 120 - 60);
       const startY = window.innerHeight / 2 + (Math.random() * 60 - 30);
