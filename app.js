@@ -118,6 +118,93 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   // ----------------------------
+  // Favorites content (expandable)
+  // ----------------------------
+  const favoritesData = [
+    {
+      name: "To Eat",
+      type: "list",
+      items: ["Sonoratown", "Mizlala", "hard boiled eggs"]
+    },
+    {
+      name: "To Go",
+      type: "list",
+      items: ["Little Tokyo", "Drive", "my favorite park (we don't go enough)"]
+    },
+    {
+      name: "To Watch",
+      type: "list",
+      items: ["we don't"]
+    },
+    {
+      name: "To Listen To",
+      type: "albums",
+      items: ["Capsule.jpg", "Details.jpg", "Perfume.jpg", "Oklou.jpg"]
+    },
+    {
+      name: "To Do",
+      type: "list",
+      items: ["talk!!", "sex :D"]
+    }
+  ];
+
+  function escapeHtml(str) {
+    return String(str)
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#039;");
+  }
+
+  function renderFavoritesHtml() {
+    return `
+      <div class="favs">
+        ${favoritesData
+          .map(
+            (group) => `
+          <div class="fav-group">
+            <button class="fav-header" type="button">
+              <span class="fav-heart">♡</span>
+              <span>${escapeHtml(group.name)}</span>
+            </button>
+            <div class="fav-panel">
+              ${
+                group.type === "list"
+                  ? group.items
+                      .map((item) => `<div class="fav-item">${escapeHtml(item)}</div>`)
+                      .join("")
+                  : `
+                    <div class="album-grid">
+                      ${group.items
+                        .map(
+                          (file) =>
+                            `<img class="album-cover" src="${encodeURI(file)}" alt="">`
+                        )
+                        .join("")}
+                    </div>
+                  `
+              }
+            </div>
+          </div>
+        `
+          )
+          .join("")}
+      </div>
+    `;
+  }
+
+  function wireFavoritesInteractions(root) {
+    root.querySelectorAll(".fav-header").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const group = btn.closest(".fav-group");
+        if (!group) return;
+        group.classList.toggle("open"); // multiple can stay open at once
+      });
+    });
+  }
+
+  // ----------------------------
   // Desktop icon clicks
   // Files opens the photo folder
   // Others open placeholder windows
@@ -157,7 +244,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const content = document.createElement("div");
     content.className = "xp-content";
-    content.innerHTML = `<p>${titles[app] || "window"} window placeholder</p>`;
+
+    if (app === "favorite") {
+      title.textContent = "Our Favorites";
+      content.innerHTML = renderFavoritesHtml();
+      wireFavoritesInteractions(content);
+    } else {
+      content.innerHTML = `<p>${titles[app] || "window"} window placeholder</p>`;
+    }
 
     win.append(bar, content);
     layer.appendChild(win);
