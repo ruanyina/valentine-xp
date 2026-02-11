@@ -17,9 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let z = 10;
 
-  // ----------------------------
   // Photo folder system
-  // ----------------------------
   const photoFiles = [
     "First Date.jpg",
     "Second Date.jpg",
@@ -117,35 +115,13 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // ----------------------------
-  // Favorites content (expandable)
-  // ----------------------------
+  // Favorites content
   const favoritesData = [
-    {
-      name: "To Eat",
-      type: "list",
-      items: ["Sonoratown", "Mizlala", "hard boiled eggs"]
-    },
-    {
-      name: "To Go",
-      type: "list",
-      items: ["Little Tokyo", "Drive", "my favorite park (we don't go enough)"]
-    },
-    {
-      name: "To Watch",
-      type: "list",
-      items: ["we don't"]
-    },
-    {
-      name: "To Listen To",
-      type: "albums",
-      items: ["Capsule.jpg", "Details.jpg", "Perfume.jpg", "Oklou.jpg"]
-    },
-    {
-      name: "To Do",
-      type: "list",
-      items: ["talk!!", "sex :D"]
-    }
+    { name: "To Eat", type: "list", items: ["Sonoratown", "Mizlala", "hard boiled eggs"] },
+    { name: "To Go", type: "list", items: ["Little Tokyo", "Drive", "my favorite park (we don't go enough)"] },
+    { name: "To Watch", type: "list", items: ["we don't"] },
+    { name: "To Listen To", type: "albums", items: ["Capsule.jpg", "Details.jpg", "Perfume.jpg", "Oklou.jpg"] },
+    { name: "To Do", type: "list", items: ["talk!!", "sex :D"] }
   ];
 
   function escapeHtml(str) {
@@ -160,9 +136,7 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderFavoritesHtml() {
     return `
       <div class="favs">
-        ${favoritesData
-          .map(
-            (group) => `
+        ${favoritesData.map((group) => `
           <div class="fav-group">
             <button class="fav-header" type="button">
               <span class="fav-heart">♡</span>
@@ -171,25 +145,14 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="fav-panel">
               ${
                 group.type === "list"
-                  ? group.items
-                      .map((item) => `<div class="fav-item">${escapeHtml(item)}</div>`)
-                      .join("")
-                  : `
-                    <div class="album-grid">
-                      ${group.items
-                        .map(
-                          (file) =>
-                            `<img class="album-cover" src="${encodeURI(file)}" alt="">`
-                        )
-                        .join("")}
-                    </div>
-                  `
+                  ? group.items.map((item) => `<div class="fav-item">${escapeHtml(item)}</div>`).join("")
+                  : `<div class="album-grid">
+                      ${group.items.map((file) => `<img class="album-cover" src="${encodeURI(file)}" alt="">`).join("")}
+                    </div>`
               }
             </div>
           </div>
-        `
-          )
-          .join("")}
+        `).join("")}
       </div>
     `;
   }
@@ -199,24 +162,110 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.addEventListener("click", () => {
         const group = btn.closest(".fav-group");
         if (!group) return;
-        group.classList.toggle("open"); // multiple can stay open at once
+        group.classList.toggle("open");
       });
     });
   }
 
-  // ----------------------------
+  // Question content
+  function renderQuestionHtml() {
+    return `
+      <div class="question-wrap">
+        <div class="question-text">will you be my valentine?</div>
+        <div class="question-actions">
+          <button class="xp-btn xp-btn-yes" id="yesBtn" type="button">YES</button>
+          <button class="xp-btn xp-btn-no" id="noBtn" type="button">NO</button>
+        </div>
+      </div>
+    `;
+  }
+
+  function ensureFxLayer() {
+    let fx = document.querySelector(".fx-layer");
+    if (!fx) {
+      fx = document.createElement("div");
+      fx.className = "fx-layer";
+      document.body.appendChild(fx);
+    }
+    return fx;
+  }
+
+  function heartsExplode() {
+    const fx = ensureFxLayer();
+    const count = 70;
+
+    for (let i = 0; i < count; i++) {
+      const h = document.createElement("div");
+      h.className = "heart";
+      h.textContent = "♡";
+
+      const startX = window.innerWidth / 2 + (Math.random() * 120 - 60);
+      const startY = window.innerHeight / 2 + (Math.random() * 60 - 30);
+
+      const dx = (Math.random() * 2 - 1) * (240 + Math.random() * 220);
+      const dy = (Math.random() * -1) * (260 + Math.random() * 260);
+
+      h.style.left = `${startX}px`;
+      h.style.top = `${startY}px`;
+      h.style.setProperty("--dx", `${dx}px`);
+      h.style.setProperty("--dy", `${dy}px`);
+
+      fx.appendChild(h);
+
+      setTimeout(() => h.remove(), 950);
+    }
+  }
+
+  function showTicket() {
+    const overlay = document.createElement("div");
+    overlay.className = "ticket-overlay";
+    overlay.innerHTML = `<img class="ticket-img" src="Ticket.jpg" alt="">`;
+    document.body.appendChild(overlay);
+
+    overlay.addEventListener("click", () => overlay.remove());
+    setTimeout(() => {
+      if (overlay && overlay.parentNode) overlay.remove();
+    }, 9000);
+  }
+
+  function bigExplosion() {
+    const boom = document.createElement("div");
+    boom.className = "explosion";
+    document.body.appendChild(boom);
+
+    document.body.classList.add("shake");
+    setTimeout(() => document.body.classList.remove("shake"), 500);
+
+    setTimeout(() => boom.remove(), 750);
+  }
+
+  function wireQuestionInteractions(root) {
+    const yes = root.querySelector("#yesBtn");
+    const no = root.querySelector("#noBtn");
+
+    if (yes) {
+      yes.addEventListener("click", () => {
+        heartsExplode();
+        setTimeout(showTicket, 450);
+      });
+    }
+
+    if (no) {
+      no.addEventListener("click", () => {
+        bigExplosion();
+      });
+    }
+  }
+
   // Desktop icon clicks
-  // Files opens the photo folder
-  // Others open placeholder windows
-  // ----------------------------
   document.querySelectorAll(".desktop-icon").forEach((icon) => {
     icon.addEventListener("click", () => {
-      const app = icon.getAttribute("data-app");
+      const app = icon.dataset.app;
 
-if (app === "files") {
-  openFolder();
-  return;
-}
+      if (app === "files") {
+        openFolder();
+        return;
+      }
 
       openWindow(app);
     });
@@ -249,13 +298,18 @@ if (app === "files") {
       title.textContent = "Our Favorites";
       content.innerHTML = renderFavoritesHtml();
       wireFavoritesInteractions(content);
+    } else if (app === "question") {
+      title.textContent = "huh?";
+      content.innerHTML = renderQuestionHtml();
+      wireQuestionInteractions(content);
     } else {
       content.innerHTML = `<p>${titles[app] || "window"} window placeholder</p>`;
     }
 
     win.append(bar, content);
-   document.body.appendChild(win);
 
+    // append to body so clicks work even if windowLayer has pointer events none
+    document.body.appendChild(win);
 
     drag(win, bar);
   }
@@ -283,9 +337,7 @@ if (app === "files") {
     });
   }
 
-  // ----------------------------
-  // Music toggle (now safely inside DOMContentLoaded)
-  // ----------------------------
+  // Music toggle
   const music = document.getElementById("bgMusic");
   const btn = document.getElementById("musicBtn");
 
